@@ -39,7 +39,7 @@ $artifactDir = Join-Path $PSScriptRoot "release-artifacts\\$Tag"
 New-Item -ItemType Directory -Force -Path $artifactDir | Out-Null
 Copy-Item -Path $apkPath -Destination (Join-Path $artifactDir "app-direct-release.apk") -Force
 
-$apkUrl = "https://github.com/$Owner/$Repo/releases/download/$Tag/app-direct-release.apk"
+$apkUrl = "https://raw.githubusercontent.com/$Owner/$Repo/main/android/distribution/app-direct-release.apk"
 $manifestUrl = "https://raw.githubusercontent.com/$Owner/$Repo/main/android/update-manifest.json"
 
 $manifestObj = [ordered]@{
@@ -66,4 +66,5 @@ Write-Host "2) Manifest file to commit: $manifestPath"
 Write-Host "3) UPDATE_MANIFEST_URL set to: $manifestUrl"
 Write-Host "4) Release tag to create on GitHub: $Tag"
 Write-Host "5) Release asset url (will work after upload): $apkUrl"
+
 
