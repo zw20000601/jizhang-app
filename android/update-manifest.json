@@ -1,7 +1,7 @@
-﻿{
+{
   "versionCode": 2,
   "versionName": "1.0.1",
   "notes": "Fixes and improvements",
-  "apkUrl": "https://raw.githubusercontent.com/zw20000601/jizhang-app/main/android/distribution/app-direct-release.apk",
+  "apkUrl": "https://github.com/zw20000601/jizhang-app/releases/download/v1.0.1/app-direct-release.apk",
   "force": false
 }
