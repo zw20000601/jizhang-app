@@ -18,16 +18,21 @@ if ([string]::IsNullOrWhiteSpace($Tag)) {
   $Tag = "v$VersionName"
 }
 
-$root = Split-Path -Parent $PSScriptRoot
-$apkPath = Join-Path $PSScriptRoot "app\\build\\outputs\\apk\\direct\\release\\app-direct-release.apk"
+$apkSigned = Join-Path $PSScriptRoot "app\\build\\outputs\\apk\\direct\\release\\app-direct-release.apk"
+$apkUnsigned = Join-Path $PSScriptRoot "app\\build\\outputs\\apk\\direct\\release\\app-direct-release-unsigned.apk"
+$apkPath = $apkSigned
 
-if ($BuildApk -or -not (Test-Path $apkPath)) {
+if ($BuildApk -or ((-not (Test-Path $apkSigned)) -and (-not (Test-Path $apkUnsigned)))) {
   Write-Host "Building direct release APK..."
   & (Join-Path $PSScriptRoot "build-apk.ps1") -Flavor direct -BuildType release
 }
 
-if (-not (Test-Path $apkPath)) {
-  throw "APK not found: $apkPath"
+if (Test-Path $apkSigned) {
+  $apkPath = $apkSigned
+} elseif (Test-Path $apkUnsigned) {
+  $apkPath = $apkUnsigned
+} else {
+  throw "APK not found. Tried:`n$apkSigned`n$apkUnsigned"
 }
 
 $artifactDir = Join-Path $PSScriptRoot "release-artifacts\\$Tag"

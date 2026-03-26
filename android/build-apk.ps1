@@ -44,5 +44,7 @@ finally {
   Pop-Location
 }
 
-$apk = Join-Path $PSScriptRoot "app\build\outputs\apk\$Flavor\$BuildType\app-$Flavor-$BuildType.apk"
+$apkSigned = Join-Path $PSScriptRoot "app\build\outputs\apk\$Flavor\$BuildType\app-$Flavor-$BuildType.apk"
+$apkUnsigned = Join-Path $PSScriptRoot "app\build\outputs\apk\$Flavor\$BuildType\app-$Flavor-$BuildType-unsigned.apk"
+$apk = if (Test-Path $apkSigned) { $apkSigned } elseif (Test-Path $apkUnsigned) { $apkUnsigned } else { $apkSigned }
 Write-Host "APK built: $apk"
