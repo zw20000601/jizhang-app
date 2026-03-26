@@ -8,7 +8,7 @@
   [Parameter(Mandatory = $true)]
   [int]$VersionCode,
   [string]$Tag = "",
-  [string]$Notes = "修复问题并优化体验",
+  [string]$Notes = "Fixes and improvements",
   [switch]$BuildApk
 )
 
@@ -66,3 +66,4 @@ Write-Host "2) Manifest file to commit: $manifestPath"
 Write-Host "3) UPDATE_MANIFEST_URL set to: $manifestUrl"
 Write-Host "4) Release tag to create on GitHub: $Tag"
 Write-Host "5) Release asset url (will work after upload): $apkUrl"
+
