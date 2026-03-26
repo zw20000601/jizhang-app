@@ -1,0 +1,19 @@
+﻿# System / IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Build caches
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+
+# Generated release artifacts
+android/release-artifacts/
+*.apk
+*.aab
+
+# Temp extraction
+_doc_extract/
